@@ -1,29 +1,39 @@
-.heading{
+.heading {
     font-size: 35px;
     width: 100%;
     margin: 0px;
 }
-.subline{
+
+.subline {
     font-size: 20px;
     color: wheat;
     background-color: brown;
 }
 
-canvas{
+canvas {
     margin-top: 150px;
     border: 2px solid gray;
     border-radius: 20px;
     box-shadow: 5px 5px 5px;
 }
 
-body{
-    background: linear-gradient(to bottom right ,blue,violet,pink);
+body {
+    background: linear-gradient(to bottom right, blue, violet, pink);
 }
 
-.start{
+.start {
     font-size: 20px;
 }
 
-.sstatus{
+.sstatus {
     font-size: 25px;
+}
+
+.footer {
+    text-align: center;
+    line-height: 2;
+    width: 100%;
+    margin: 0px;
+    color: white;
+    background-color: gray;
 }
