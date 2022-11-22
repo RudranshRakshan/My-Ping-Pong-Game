@@ -1,5 +1,8 @@
 
 /*created by prashant shukla */
+wX=0;
+wY=0;
+
 
 var paddle2 =10,paddle1=10;
 
@@ -24,12 +27,30 @@ var ball = {
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.parent("canvas");
+
+  video=createCapture(VIDEO);
+  video.hide()
+
+  pose=ml5.poseNet(video,modelLoadded);
+  pose.on("pose",gotPoses);
 }
 
+function modelLoadded(){
+  console.log("model is loaded");
+
+}
+
+function gotPoses(result){
+  console.log();
+  if(result.length>0){
+    wX=result[0].pose.rightWrist.x;
+    wY=result[0].pose.nose.rightWrist.y;
+  }
+}
 
 function draw(){
-
- background(0); 
+image(video,0,0,700,600);
+ //background(0); 
 
  fill("black");
  stroke("black");
@@ -46,7 +67,7 @@ function draw(){
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = mouseY; 
+   paddle1Y = wY; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
