@@ -24,6 +24,11 @@ var ball = {
   dy: 3
 }
 
+function preload() {
+  hit = loadSound("ball_touch_paddel.wav");
+  miss = loadSound("missed.wav");
+}
+
 function setup() {
   var canvas = createCanvas(700, 600);
   canvas.parent("canvas");
@@ -45,13 +50,13 @@ function gotPoses(result) {
   if (result.length > 0) {
     wX = result[0].pose.rightWrist.x;
     wY = result[0].pose.rightWrist.y;
-  paddle1Y = wY;
+    paddle1Y = wY;
   }
 }
 
-function start(){
-  Status="start";
-  document.getElementById("sStatus").innerHTML="Status: The Game has Started";
+function start() {
+  Status = "start";
+  document.getElementById("sStatus").innerHTML = "Status: The Game has Started";
 }
 
 function draw() {
@@ -147,9 +152,11 @@ function move() {
   if (ball.x - 2.5 * ball.r / 2 < 0) {
     if (ball.y >= paddle1Y && ball.y <= paddle1Y + paddle1Height) {
       ball.dx = -ball.dx + 0.5;
+      hit.play();
       playerscore++;
     }
     else {
+    miss.play();
       pcscore++;
       reset();
       navigator.vibrate(100);
